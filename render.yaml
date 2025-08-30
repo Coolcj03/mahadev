@@ -22,6 +22,14 @@ services:
         value: admin123
       - key: DEBUG
         value: false
+      - key: ALGORITHM
+        value: HS256
+      - key: CORS_ORIGINS
+        value: "*"
+      - key: LOG_LEVEL
+        value: INFO
+      - key: ENVIRONMENT
+        value: production
 
 databases:
   - name: mahadeva-postgres
