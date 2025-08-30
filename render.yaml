@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: mahadeva-fastapi
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: DATABASE_URL
+        fromDatabase:
+          name: mahadeva-postgres
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: 30
+      - key: ADMIN_EMAIL
+        value: admin@mahadeva.com
+      - key: ADMIN_PASSWORD
+        value: admin123
+      - key: DEBUG
+        value: false
+
+databases:
+  - name: mahadeva-postgres
+    databaseName: mahadeva_electronics
+    user: mahadeva_user
+    plan: free
